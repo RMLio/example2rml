@@ -81,9 +81,7 @@ let dataSources = [{
   }]
 }];
 
-example2rml(triples, dataSources).then(function(rml){
-  console.log(rml);
-});
+example2rml(triples, dataSources).then(console.log(rml));
 ```
 
 ## Support Data Formats
