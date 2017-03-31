@@ -47,6 +47,8 @@ The RML mapping will look something like this.
 ## Usage
 
 ```$JavaScript
+let example2rml = require('example2rml');
+
 let triples = [{
   subject: 'http://www.example.com/pieter',
   predicate: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
@@ -81,7 +83,6 @@ let dataSources = [{
 
 example2rml(triples, dataSources).then(function(rml){
   console.log(rml);
-  done();
 });
 ```
 
