@@ -6,7 +6,7 @@ let assert = require('chai').assert;
 let example2rml = require('../index.js');
 let type = require('semanticmodel').nodeType.types;
 
-describe('Aligner:', function () {
+describe('Index:', function () {
   it('single entity with attributes', function (done) {
     this.timeout(10000);
     let triples = [
