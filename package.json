@@ -1,5 +1,5 @@
 {
-  "name": "ebmp",
+  "name": "example2rml",
   "version": "0.0.1",
   "description": "Example-Based Mapping Generation. You provide the original data and an RDF example. We generate an RML mapping.",
   "main": "index.js",
