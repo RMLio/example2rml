@@ -1,0 +1,21 @@
+{
+  "name": "ebmp",
+  "version": "0.0.1",
+  "description": "Example-Based Mapping Generation. You provide the original data and an RDF example. We generate an RML mapping.",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "author": "Pieter Heyvaert",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "n3": "^0.9.1",
+    "q": "^1.5.0",
+    "rdfstore": "^0.9.17",
+    "semanticmodel": "git+ssh://git@git.datasciencelab.ugent.be:4444/pheyvaer/semanticmodel.git"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
