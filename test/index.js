@@ -7,7 +7,7 @@ let example2rml = require('../index.js');
 let type = require('semanticmodel').nodeType.types;
 
 describe('Index:', function () {
-  it('single entity with attributes', function (done) {
+  it('single entity with attributes', function () {
     this.timeout(10000);
     let triples = [
       {
@@ -47,9 +47,8 @@ describe('Index:', function () {
       ]
     }];
 
-    example2rml(triples, dataSources).then(function(rml){
-      console.log(rml);
-      done();
+    return example2rml(triples, dataSources).then(function(rml){
+      assert.deepEqual(rml, require('./index.json').mappings[0], 'RML triples are not correct.');
     });
   });
 });

@@ -7,7 +7,7 @@ let SemanticModelGenerator = require('../lib/semanticmodelgenerator.js');
 let type = require('semanticmodel').nodeType.types;
 
 describe('SemanticModelGenerator:', function () {
-  it('single entity with attributes', function (done) {
+  it('single entity with attributes', function () {
     let triples = [
       {
         subject: 'http://www.example.com/pieter',
@@ -32,24 +32,18 @@ describe('SemanticModelGenerator:', function () {
     ];
 
     let smg = new SemanticModelGenerator(triples);
-    smg.getModel().then(function(sm){
+    return smg.getModel().then(function (sm) {
       //console.log(sm);
-      try {
-        assert.equal(sm.getAllNodes(type.CLASS).length, 1, 'Number of class nodes is not correct.');
-        assert.equal(sm.getAllNodes(type.DATAREFERENCE).length, 3, 'Number of data nodes is not correct.');
-        assert.equal(sm.getAllEdges().length, 3, 'Number of edges is not correct.');
-        assert.equal(sm.getEdges('http://www.example.com#firstName').length, 1, 'Firstname label not correct.');
-        assert.equal(sm.getEdges('http://www.example.com#lastName').length, 1, 'Lastname label not correct.');
-        assert.equal(sm.getEdges('http://www.example.com#age').length, 1, 'Age label not correct.');
-      } catch (e) {
-        console.log(e);
-      }
-
-      done();
+      assert.equal(sm.getAllNodes(type.CLASS).length, 1, 'Number of class nodes is not correct.');
+      assert.equal(sm.getAllNodes(type.DATAREFERENCE).length, 3, 'Number of data nodes is not correct.');
+      assert.equal(sm.getAllEdges().length, 3, 'Number of edges is not correct.');
+      assert.equal(sm.getEdges('http://www.example.com#firstName').length, 1, 'Firstname label not correct.');
+      assert.equal(sm.getEdges('http://www.example.com#lastName').length, 1, 'Lastname label not correct.');
+      assert.equal(sm.getEdges('http://www.example.com#age').length, 1, 'Age label not correct.');
     });
   });
 
-  it('2 entities', function (done) {
+  it('2 entities', function () {
     let triples = [
       {
         subject: 'http://www.example.com/pieter',
@@ -79,22 +73,16 @@ describe('SemanticModelGenerator:', function () {
     ];
 
     let smg = new SemanticModelGenerator(triples);
-    smg.getModel().then(function(sm){
-      //console.log(sm);
-      try {
-         assert.equal(sm.getAllNodes(type.CLASS).length, 2, 'Number of class nodes is not correct.');
-         assert.equal(sm.getAllNodes(type.DATAREFERENCE).length, 2, 'Number of data nodes is not correct.');
-         assert.equal(sm.getAllEdges().length, 3, 'Number of edges is not correct.');
-         assert.equal(sm.getEdges('http://www.example.com#firstName').length, 1, 'Firstname label not correct.');
-         assert.equal(sm.getEdges('http://www.example.com#brand').length, 1, 'Brand label not correct.');
-         assert.equal(sm.getEdges('http://www.example.com#owner').length, 1, 'Owner label not correct.');
-         assert.equal(sm.getEdges('http://www.example.com#owner')[0].source, 1, 'Owner edge is not correct.');
-         assert.equal(sm.getEdges('http://www.example.com#owner')[0].target, 0, 'Owner edge is not correct.');
-      } catch (e) {
-        console.log(e);
-      }
+    return smg.getModel().then(function (sm) {
 
-      done();
+      assert.equal(sm.getAllNodes(type.CLASS).length, 2, 'Number of class nodes is not correct.');
+      assert.equal(sm.getAllNodes(type.DATAREFERENCE).length, 2, 'Number of data nodes is not correct.');
+      assert.equal(sm.getAllEdges().length, 3, 'Number of edges is not correct.');
+      assert.equal(sm.getEdges('http://www.example.com#firstName').length, 1, 'Firstname label not correct.');
+      assert.equal(sm.getEdges('http://www.example.com#brand').length, 1, 'Brand label not correct.');
+      assert.equal(sm.getEdges('http://www.example.com#owner').length, 1, 'Owner label not correct.');
+      assert.equal(sm.getEdges('http://www.example.com#owner')[0].source, 1, 'Owner edge is not correct.');
+      assert.equal(sm.getEdges('http://www.example.com#owner')[0].target, 0, 'Owner edge is not correct.');
     });
   });
 });

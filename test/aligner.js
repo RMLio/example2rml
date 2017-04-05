@@ -38,10 +38,10 @@ describe('Aligner:', function () {
       row: [{
         column: 'firstname',
         value: 'Pieter'
-      },{
+      }, {
         column: 'lastname',
         value: 'Heyvaert'
-      },{
+      }, {
         column: 'age',
         value: '26'
       }
@@ -49,7 +49,7 @@ describe('Aligner:', function () {
     }];
 
     let smg = new SemanticModelGenerator(triples);
-    smg.getModel().then(function(sm){
+    smg.getModel().then(function (sm) {
       try {
         let aligner = new Aligner(dataSources);
         aligner.align(sm);
@@ -65,7 +65,7 @@ describe('Aligner:', function () {
     });
   });
 
-  it('2 entities', function (done) {
+  it('2 entities', function () {
     let triples = [
       {
         subject: 'http://www.example.com/pieter',
@@ -100,13 +100,13 @@ describe('Aligner:', function () {
       row: [{
         column: 'id',
         value: '0'
-      },{
+      }, {
         column: 'firstname',
         value: 'Pieter'
-      },{
+      }, {
         column: 'lastname',
         value: 'Heyvaert'
-      },{
+      }, {
         column: 'age',
         value: '26'
       }
@@ -117,13 +117,13 @@ describe('Aligner:', function () {
       row: [{
         column: 'id',
         value: '2'
-      },{
+      }, {
         column: 'brand',
         value: 'Peugeot'
-      },{
+      }, {
         column: 'owner',
         value: '0'
-      },{
+      }, {
         column: 'age',
         value: '26'
       }
@@ -131,24 +131,26 @@ describe('Aligner:', function () {
     }];
 
     let smg = new SemanticModelGenerator(triples);
-    smg.getModel().then(function(sm){
-      try {
-        let aligner = new Aligner(dataSources);
-        aligner.align(sm);
-        console.log(sm);
-        // assert.equal(sm.getAllNodes(type.CLASS).length, 2, 'Number of class nodes is not correct.');
-        // assert.equal(sm.getAllNodes(type.DATAREFERENCE).length, 2, 'Number of data nodes is not correct.');
-        // assert.equal(sm.getAllEdges().length, 3, 'Number of edges is not correct.');
-        // assert.equal(sm.getEdges('http://www.example.com#firstName').length, 1, 'Firstname label not correct.');
-        // assert.equal(sm.getEdges('http://www.example.com#brand').length, 1, 'Brand label not correct.');
-        // assert.equal(sm.getEdges('http://www.example.com#owner').length, 1, 'Owner label not correct.');
-        // assert.equal(sm.getEdges('http://www.example.com#owner')[0].source, 1, 'Owner edge is not correct.');
-        // assert.equal(sm.getEdges('http://www.example.com#owner')[0].target, 0, 'Owner edge is not correct.');
-      } catch (e) {
-        console.log(e);
-      }
+    return smg.getModel().then(function (sm) {
+      let aligner = new Aligner(dataSources);
+      aligner.align(sm);
+      //console.log(sm);
 
-      done();
+      let brandNodeCounter = 0;
+      let firstNameCounter = 0;
+
+      sm.getAllNodes().forEach(function(node){
+        if (node.label === 'firstname' && node.dataSource === 'person-data' && node.sample === 'Pieter') {
+          firstNameCounter ++;
+        }
+
+        if (node.label === 'brand' && node.dataSource === 'car-data' && node.sample === 'Peugeot') {
+          brandNodeCounter ++;
+        }
+      });
+
+      assert.equal(firstNameCounter, 1, 'Firstname node is not correct or not found.');
+      assert.equal(brandNodeCounter, 1, 'Brand node is not correct or not found.');
     });
   });
 });
