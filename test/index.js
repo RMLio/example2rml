@@ -5,9 +5,11 @@
 let assert = require('chai').assert;
 let example2rml = require('../index.js');
 let type = require('semanticmodel').nodeType.types;
+let makeReadable = require('readable-rml');
+let N3 = require('n3');
 
 describe('Index:', function () {
-  it('single entity with attributes', function () {
+  it.only('single entity with attributes', function () {
     this.timeout(10000);
     let triples = [
       {
@@ -32,16 +34,17 @@ describe('Index:', function () {
       }
     ];
 
+    //the column names need to have double quotes around the header
     let dataSources = [{
       type: 'csv',
       row: [{
-        column: 'firstname',
+        column: '"firstname"',
         value: 'Pieter'
       },{
-        column: 'lastname',
+        column: '"lastname"',
         value: 'Heyvaert'
       },{
-        column: 'age',
+        column: '"age"',
         value: '26'
       }
       ]
@@ -49,6 +52,17 @@ describe('Index:', function () {
 
     return example2rml(triples, dataSources).then(function(rml){
       assert.deepEqual(rml, require('./index.json').mappings[0], 'RML triples are not correct.');
+      let writer = N3.Writer({prefixes: {
+        rr: 'http://www.w3.org/ns/r2rml#',
+        rml: 'http://semweb.mmlab.be/ns/rml#',
+        ex: 'http://www.example.com/',
+        foaf: 'http://xmlns.com/foaf/0.1/'
+      }});
+
+      makeReadable(rml, writer);
+      writer.end(function (error, result) {
+        console.log(result);
+      });
     });
   });
 });

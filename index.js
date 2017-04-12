@@ -19,7 +19,7 @@ function generate(triples, dataSources){
   let aligner = new Aligner(dataSources);
   let rmg = new RMLMappingGenerator({baseIRI: 'http://www.mymapping.com#'});
 
-  //1. gemerate the semantic model
+  //1. generate the semantic model
   smg.getModel().then(function(sm) {
     //2. align the semantic model with the data sources
     aligner.align(sm);

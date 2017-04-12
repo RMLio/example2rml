@@ -12,7 +12,8 @@
     "n3": "^0.9.1",
     "q": "^1.5.0",
     "rdfstore": "^0.9.17",
-    "semanticmodel": "git+ssh://git@git.datasciencelab.ugent.be:4444/pheyvaer/semanticmodel.git"
+    "semanticmodel": "git+ssh://git@git.datasciencelab.ugent.be:4444/pheyvaer/semanticmodel.git",
+    "readable-rml": "git+ssh://git@git.datasciencelab.ugent.be:4444/rml/readable-rml.git"
   },
   "devDependencies": {
     "chai": "^3.5.0",
