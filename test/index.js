@@ -59,7 +59,7 @@ describe('Index:', function () {
         foaf: 'http://xmlns.com/foaf/0.1/'
       }});
 
-      console.log(rml);
+      //console.log(rml);
 
       makeReadable(rml, writer);
       writer.end(function (error, result) {
@@ -68,7 +68,7 @@ describe('Index:', function () {
     });
   });
 
-  it.only('with sourceDescription', function () {
+  it('with sourceDescription', function () {
     this.timeout(10000);
     let triples = [
       {
