@@ -8,7 +8,7 @@ let type = require('semanticmodel').nodeType.types;
 let makeReadable = require('readable-rml');
 let N3 = require('n3');
 
-describe('Index:', function () {
+describe('JSON:', function () {
   it('single entity with attributes', function () {
     this.timeout(10000);
     let triples = [
@@ -36,22 +36,18 @@ describe('Index:', function () {
 
     //the column names need to have double quotes around the header
     let dataSources = [{
-      type: 'csv',
-      row: [{
-        column: '"firstname"',
-        value: 'Pieter'
-      },{
-        column: '"lastname"',
-        value: 'Heyvaert'
-      },{
-        column: '"age"',
-        value: '26'
+      type: 'json',
+      object: {
+        name: {
+          first: 'Pieter',
+          last: 'Heyvaert'
+        },
+        age: "26"
       }
-      ]
     }];
 
     return example2rml(triples, dataSources).then(function(rml){
-      assert.deepEqual(rml, require('./index.json').mappings[0], 'RML triples are not correct.');
+      assert.deepEqual(rml, require('./index.json').mappings[2], 'RML triples are not correct.');
       let writer = N3.Writer({prefixes: {
         rr: 'http://www.w3.org/ns/r2rml#',
         rml: 'http://semweb.mmlab.be/ns/rml#',
