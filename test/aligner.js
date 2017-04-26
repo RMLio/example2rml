@@ -96,7 +96,7 @@ describe('Aligner:', function () {
 
     let dataSources = [{
       type: 'csv',
-      id: 'person-data',
+      sourceDescription: 'person-data',
       row: [{
         column: 'id',
         value: '0'
@@ -113,7 +113,7 @@ describe('Aligner:', function () {
       ]
     }, {
       type: 'csv',
-      id: 'car-data',
+      sourceDescription: 'car-data',
       row: [{
         column: 'id',
         value: '2'
@@ -140,11 +140,11 @@ describe('Aligner:', function () {
       let firstNameCounter = 0;
 
       sm.getAllNodes().forEach(function(node){
-        if (node.label === 'firstname' && node.dataSource === 'person-data' && node.sample === 'Pieter') {
+        if (node.label === 'firstname' && node.sourceDescription === 'person-data' && node.sample === 'Pieter') {
           firstNameCounter ++;
         }
 
-        if (node.label === 'brand' && node.dataSource === 'car-data' && node.sample === 'Peugeot') {
+        if (node.label === 'brand' && node.sourceDescription === 'car-data' && node.sample === 'Peugeot') {
           brandNodeCounter ++;
         }
       });
