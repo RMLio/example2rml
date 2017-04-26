@@ -64,7 +64,7 @@ describe('JSON:', function () {
     });
   });
 
-  it('with sourceDescription', function () {
+  it.skip('with sourceDescription', function () {
     this.timeout(10000);
     let triples = [
       {

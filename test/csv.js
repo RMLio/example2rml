@@ -38,13 +38,13 @@ describe('CSV:', function () {
     let dataSources = [{
       type: 'csv',
       row: [{
-        column: '"firstname"',
+        column: 'firstname',
         value: 'Pieter'
       },{
-        column: '"lastname"',
+        column: 'lastname',
         value: 'Heyvaert'
       },{
-        column: '"age"',
+        column: 'age',
         value: '26'
       }
       ]
@@ -101,13 +101,13 @@ describe('CSV:', function () {
         source: '/tmp/input.csv'
       },
       row: [{
-        column: '"firstname"',
+        column: 'firstname',
         value: 'Pieter'
       },{
-        column: '"lastname"',
+        column: 'lastname',
         value: 'Heyvaert'
       },{
-        column: '"age"',
+        column: 'age',
         value: '26'
       }
       ]
