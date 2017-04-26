@@ -8,7 +8,7 @@ let Aligner = require('../lib/aligner.js');
 let type = require('semanticmodel').nodeType.types;
 
 describe('Aligner:', function () {
-  it('single entity with attributes', function (done) {
+  it('single entity with attributes', function () {
     this.timeout(10000);
     let triples = [
       {
@@ -49,19 +49,13 @@ describe('Aligner:', function () {
     }];
 
     let smg = new SemanticModelGenerator(triples);
-    smg.getModel().then(function (sm) {
-      try {
-        let aligner = new Aligner(dataSources);
-        aligner.align(sm);
-        //console.log(sm);
-        assert.equal(sm.get(1).label, 'firstname', 'Correct label is not found.');
-        assert.equal(sm.get(3).label, 'lastname', 'Correct label is not found.');
-        assert.equal(sm.get(5).label, 'age', 'Correct label is not found.');
-      } catch (e) {
-        console.log(e);
-      }
-
-      done();
+    return smg.getModel().then(function (sm) {
+      let aligner = new Aligner(dataSources);
+      aligner.align(sm);
+      //console.log(sm);
+      assert.equal(sm.get(1).label, 'firstname', 'Correct label is not found.');
+      assert.equal(sm.get(3).label, 'lastname', 'Correct label is not found.');
+      assert.equal(sm.get(5).label, 'age', 'Correct label is not found.');
     });
   });
 
@@ -194,13 +188,13 @@ describe('Aligner:', function () {
       let brandNodeCounter = 0;
       let firstNameCounter = 0;
 
-      sm.getAllNodes().forEach(function(node){
+      sm.getAllNodes().forEach(function (node) {
         if (node.label === 'firstname' && node.sourceDescription === 'person-data' && node.sample === 'Pieter') {
-          firstNameCounter ++;
+          firstNameCounter++;
         }
 
         if (node.label === 'brand' && node.sourceDescription === 'car-data' && node.sample === 'Peugeot') {
-          brandNodeCounter ++;
+          brandNodeCounter++;
         }
       });
 
