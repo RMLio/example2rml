@@ -94,7 +94,8 @@ describe('JSON:', function () {
       type: 'json',
       sourceDescription: {
         type: 'json',
-        source: 'person.json'
+        source: 'person.json',
+        iterator: '$.persons.person'
       },
       object: {
         name: {

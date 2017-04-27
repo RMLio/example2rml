@@ -248,6 +248,11 @@
         "object": "\"person.json\""
       },
       {
+        "subject": "http://www.mymapping.com#0-LS",
+        "predicate": "http://semweb.mmlab.be/ns/rml#iterator",
+        "object": "\"$.persons.person\""
+      },
+      {
         "subject": "http://www.mymapping.com#0",
         "predicate": "http://www.w3.org/ns/r2rml#subjectMap",
         "object": "http://www.mymapping.com#0-SM"
