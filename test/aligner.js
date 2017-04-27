@@ -114,7 +114,7 @@ describe('Aligner:', function () {
     });
   });
 
-  it('2 entities', function () {
+  it('2 entities - CSV', function () {
     let triples = [
       {
         subject: 'http://www.example.com/pieter',
@@ -194,6 +194,176 @@ describe('Aligner:', function () {
         }
 
         if (node.label === 'brand' && node.sourceDescription === 'car-data' && node.sample === 'Peugeot') {
+          brandNodeCounter++;
+        }
+      });
+
+      assert.equal(firstNameCounter, 1, 'Firstname node is not correct or not found.');
+      assert.equal(brandNodeCounter, 1, 'Brand node is not correct or not found.');
+    });
+  });
+
+  it('2 entities - JSON', function () {
+    let triples = [
+      {
+        subject: 'http://www.example.com/pieter',
+        predicate: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+        object: 'http://www.example.com#Person'
+      },
+      {
+        subject: 'http://www.example.com/pieter',
+        predicate: 'http://www.example.com#firstName',
+        object: '"Pieter"'
+      },
+      {
+        subject: 'http://www.example.com/car001',
+        predicate: 'http://www.example.com#brand',
+        object: '"Peugeot"'
+      },
+      {
+        subject: 'http://www.example.com/car001',
+        predicate: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+        object: 'http://www.example.com#Car'
+      },
+      {
+        subject: 'http://www.example.com/car001',
+        predicate: 'http://www.example.com#owner',
+        object: 'http://www.example.com/pieter'
+      }
+    ];
+
+    let dataSources = [{
+      type: 'json',
+      sourceDescription: {
+        type: 'json',
+        source: 'person.json'
+      },
+      object: {
+        name: {
+          first: 'Pieter',
+          last: 'Heyvaert'
+        },
+        age: 26
+      }
+    }, {
+      type: 'json',
+      sourceDescription: {
+        type: 'json',
+        source: 'car.json'
+      },
+      object: {
+        id: '2',
+        brand: 'Peugeot',
+        owner: {
+          id: '0',
+          age: 26
+        }
+      }
+    }];
+
+    let smg = new SemanticModelGenerator(triples);
+    return smg.getModel().then(function (sm) {
+      let aligner = new Aligner(dataSources);
+      aligner.align(sm);
+      //console.log(sm);
+
+      let brandNodeCounter = 0;
+      let firstNameCounter = 0;
+
+      sm.getAllNodes().forEach(function (node) {
+        if (node.label === 'name.first' && node.sourceDescription.source === 'person.json' && node.sample === 'Pieter') {
+          firstNameCounter++;
+        }
+
+        if (node.label === 'brand' && node.sourceDescription.source === 'car.json' && node.sample === 'Peugeot') {
+          brandNodeCounter++;
+        }
+      });
+
+      assert.equal(firstNameCounter, 1, 'Firstname node is not correct or not found.');
+      assert.equal(brandNodeCounter, 1, 'Brand node is not correct or not found.');
+    });
+  });
+
+  it('2 entities - JSON & CSV', function () {
+    let triples = [
+      {
+        subject: 'http://www.example.com/pieter',
+        predicate: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+        object: 'http://www.example.com#Person'
+      },
+      {
+        subject: 'http://www.example.com/pieter',
+        predicate: 'http://www.example.com#firstName',
+        object: '"Pieter"'
+      },
+      {
+        subject: 'http://www.example.com/car001',
+        predicate: 'http://www.example.com#brand',
+        object: '"Peugeot"'
+      },
+      {
+        subject: 'http://www.example.com/car001',
+        predicate: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+        object: 'http://www.example.com#Car'
+      },
+      {
+        subject: 'http://www.example.com/car001',
+        predicate: 'http://www.example.com#owner',
+        object: 'http://www.example.com/pieter'
+      }
+    ];
+
+    let dataSources = [{
+      type: 'json',
+      sourceDescription: {
+        type: 'json',
+        source: 'person.json'
+      },
+      object: {
+        name: {
+          first: 'Pieter',
+          last: 'Heyvaert'
+        },
+        age: 26
+      }
+    }, {
+      type: 'csv',
+      sourceDescription: {
+        type: 'csv',
+        source: 'car.csv'
+      },
+      row: [{
+        column: 'id',
+        value: '2'
+      }, {
+        column: 'brand',
+        value: 'Peugeot'
+      }, {
+        column: 'owner',
+        value: '0'
+      }, {
+        column: 'age',
+        value: '26'
+      }
+      ]
+    }];
+
+    let smg = new SemanticModelGenerator(triples);
+    return smg.getModel().then(function (sm) {
+      let aligner = new Aligner(dataSources);
+      aligner.align(sm);
+      //console.log(sm);
+
+      let brandNodeCounter = 0;
+      let firstNameCounter = 0;
+
+      sm.getAllNodes().forEach(function (node) {
+        if (node.label === 'name.first' && node.sourceDescription.source === 'person.json' && node.sample === 'Pieter') {
+          firstNameCounter++;
+        }
+
+        if (node.label === 'brand' && node.sourceDescription.source === 'car.csv' && node.sample === 'Peugeot') {
           brandNodeCounter++;
         }
       });

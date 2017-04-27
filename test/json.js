@@ -64,7 +64,7 @@ describe('JSON:', function () {
     });
   });
 
-  it.skip('with sourceDescription', function () {
+  it.only('with sourceDescription', function () {
     this.timeout(10000);
     let triples = [
       {
@@ -91,26 +91,22 @@ describe('JSON:', function () {
 
     //the column names need to have double quotes around the header
     let dataSources = [{
-      type: 'csv',
+      type: 'json',
       sourceDescription: {
-        type: 'csv',
-        source: '/tmp/input.csv'
+        type: 'json',
+        source: 'person.json'
       },
-      row: [{
-        column: '"firstname"',
-        value: 'Pieter'
-      },{
-        column: '"lastname"',
-        value: 'Heyvaert'
-      },{
-        column: '"age"',
-        value: '26'
+      object: {
+        name: {
+          first: 'Pieter',
+          last: 'Heyvaert'
+        },
+        age: "26"
       }
-      ]
     }];
 
     return example2rml(triples, dataSources).then(function(rml){
-      assert.deepEqual(rml, require('./index.json').mappings[1], 'RML triples are not correct.');
+      assert.deepEqual(rml, require('./index.json').mappings[3], 'RML triples are not correct.');
       let writer = N3.Writer({prefixes: {
         rr: 'http://www.w3.org/ns/r2rml#',
         rml: 'http://semweb.mmlab.be/ns/rml#',
