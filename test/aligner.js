@@ -34,7 +34,10 @@ describe('Aligner:', function () {
     ];
 
     let dataSources = [{
-      type: 'csv',
+      id: 'datasource-0',
+      sourceDescription: {
+        type: 'csv'
+      },
       row: [{
         column: 'firstname',
         value: 'Pieter'
@@ -59,7 +62,7 @@ describe('Aligner:', function () {
     });
   });
 
-  it('generate template', function (done) {
+  it('generate template', function () {
     this.timeout(10000);
     let triples = [
       {
@@ -85,7 +88,10 @@ describe('Aligner:', function () {
     ];
 
     let dataSources = [{
-      type: 'csv',
+      id: 'datasource-0',
+      sourceDescription: {
+        type: 'csv'
+      },
       row: [{
         column: 'firstname',
         value: 'Pieter'
@@ -100,17 +106,10 @@ describe('Aligner:', function () {
     }];
 
     let smg = new SemanticModelGenerator(triples);
-    smg.getModel().then(function (sm) {
-      try {
-        let aligner = new Aligner(dataSources);
-        aligner.align(sm);
-        //console.log(sm);
-        assert.equal(sm.get(0).template, 'http://www.example.com/{firstname}', 'Correct template is not found.');
-      } catch (e) {
-        console.log(e);
-      }
-
-      done();
+    return smg.getModel().then(function (sm) {
+      let aligner = new Aligner(dataSources);
+      aligner.align(sm);
+      assert.equal(sm.get(0).template, 'http://www.example.com/{firstname}', 'Correct template is not found.');
     });
   });
 
@@ -144,8 +143,8 @@ describe('Aligner:', function () {
     ];
 
     let dataSources = [{
-      type: 'csv',
-      sourceDescription: 'person-data',
+      id: 'datasource-0',
+      sourceDescription: {type: 'csv', source: 'person-data'},
       row: [{
         column: 'id',
         value: '0'
@@ -161,8 +160,8 @@ describe('Aligner:', function () {
       }
       ]
     }, {
-      type: 'csv',
-      sourceDescription: 'car-data',
+      id: 'datasource-1',
+      sourceDescription: {type: 'csv', source: 'car-data'},
       row: [{
         column: 'id',
         value: '2'
@@ -189,11 +188,11 @@ describe('Aligner:', function () {
       let firstNameCounter = 0;
 
       sm.getAllNodes().forEach(function (node) {
-        if (node.label === 'firstname' && node.sourceDescription === 'person-data' && node.sample === 'Pieter') {
+        if (node.label === 'firstname' && node.sourceDescription.source === 'person-data' && node.sample === 'Pieter') {
           firstNameCounter++;
         }
 
-        if (node.label === 'brand' && node.sourceDescription === 'car-data' && node.sample === 'Peugeot') {
+        if (node.label === 'brand' && node.sourceDescription.source === 'car-data' && node.sample === 'Peugeot') {
           brandNodeCounter++;
         }
       });
@@ -233,6 +232,7 @@ describe('Aligner:', function () {
     ];
 
     let dataSources = [{
+      id: 'datasource-0',
       type: 'json',
       sourceDescription: {
         type: 'json',
@@ -246,6 +246,7 @@ describe('Aligner:', function () {
         age: 26
       }
     }, {
+      id: 'datasource-2',
       type: 'json',
       sourceDescription: {
         type: 'json',
@@ -315,6 +316,7 @@ describe('Aligner:', function () {
     ];
 
     let dataSources = [{
+      id: 'datasource-0',
       type: 'json',
       sourceDescription: {
         type: 'json',

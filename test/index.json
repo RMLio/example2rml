@@ -3,6 +3,16 @@
     [
       {
         "subject": "http://www.mymapping.com#0",
+        "predicate": "http://semweb.mmlab.be/ns/rml#logicalSource",
+        "object": "http://www.mymapping.com#0-LS"
+      },
+      {
+        "subject": "http://www.mymapping.com#0-LS",
+        "predicate": "http://semweb.mmlab.be/ns/rml#referenceFormulation",
+        "object": "http://semweb.mmlab.be/ns/ql#CSV"
+      },
+      {
+        "subject": "http://www.mymapping.com#0",
         "predicate": "http://www.w3.org/ns/r2rml#subjectMap",
         "object": "http://www.mymapping.com#0-SM"
       },
@@ -86,7 +96,7 @@
       {
         "subject": "http://www.mymapping.com#0-LS",
         "predicate": "http://semweb.mmlab.be/ns/rml#source",
-        "object": "/tmp/input.csv"
+        "object": "\"/tmp/input.csv\""
       },
       {
         "subject": "http://www.mymapping.com#0",
@@ -160,6 +170,16 @@
       }
     ],
     [
+      {
+        "object": "http://www.mymapping.com#0-LS",
+        "predicate": "http://semweb.mmlab.be/ns/rml#logicalSource",
+        "subject": "http://www.mymapping.com#0"
+      },
+      {
+        "object": "http://semweb.mmlab.be/ns/ql#JSONPath",
+        "predicate": "http://semweb.mmlab.be/ns/rml#referenceFormulation",
+        "subject": "http://www.mymapping.com#0-LS"
+      },
       {
         "subject": "http://www.mymapping.com#0",
         "predicate": "http://www.w3.org/ns/r2rml#subjectMap",

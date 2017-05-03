@@ -36,7 +36,7 @@ describe('CSV:', function () {
 
     //the column names need to have double quotes around the header
     let dataSources = [{
-      type: 'csv',
+      sourceDescription: {type: 'csv'},
       row: [{
         column: 'firstname',
         value: 'Pieter'

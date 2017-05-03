@@ -36,7 +36,7 @@ describe('JSON:', function () {
 
     //the column names need to have double quotes around the header
     let dataSources = [{
-      type: 'json',
+      sourceDescription: {type: 'json'},
       object: {
         name: {
           first: 'Pieter',
@@ -46,14 +46,16 @@ describe('JSON:', function () {
       }
     }];
 
-    return example2rml(triples, dataSources).then(function(rml){
+    return example2rml(triples, dataSources).then(function (rml) {
       assert.deepEqual(rml, require('./index.json').mappings[2], 'RML triples are not correct.');
-      let writer = N3.Writer({prefixes: {
-        rr: 'http://www.w3.org/ns/r2rml#',
-        rml: 'http://semweb.mmlab.be/ns/rml#',
-        ex: 'http://www.example.com/',
-        foaf: 'http://xmlns.com/foaf/0.1/'
-      }});
+      let writer = N3.Writer({
+        prefixes: {
+          rr: 'http://www.w3.org/ns/r2rml#',
+          rml: 'http://semweb.mmlab.be/ns/rml#',
+          ex: 'http://www.example.com/',
+          foaf: 'http://xmlns.com/foaf/0.1/'
+        }
+      });
 
       //console.log(rml);
 
@@ -64,7 +66,7 @@ describe('JSON:', function () {
     });
   });
 
-  it.only('with sourceDescription', function () {
+  it('with sourceDescription', function () {
     this.timeout(10000);
     let triples = [
       {
@@ -106,14 +108,16 @@ describe('JSON:', function () {
       }
     }];
 
-    return example2rml(triples, dataSources).then(function(rml){
+    return example2rml(triples, dataSources).then(function (rml) {
       assert.deepEqual(rml, require('./index.json').mappings[3], 'RML triples are not correct.');
-      let writer = N3.Writer({prefixes: {
-        rr: 'http://www.w3.org/ns/r2rml#',
-        rml: 'http://semweb.mmlab.be/ns/rml#',
-        ex: 'http://www.example.com/',
-        foaf: 'http://xmlns.com/foaf/0.1/'
-      }});
+      let writer = N3.Writer({
+        prefixes: {
+          rr: 'http://www.w3.org/ns/r2rml#',
+          rml: 'http://semweb.mmlab.be/ns/rml#',
+          ex: 'http://www.example.com/',
+          foaf: 'http://xmlns.com/foaf/0.1/'
+        }
+      });
 
       makeReadable(rml, writer);
       writer.end(function (error, result) {
