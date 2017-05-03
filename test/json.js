@@ -61,7 +61,7 @@ describe('JSON:', function () {
 
       makeReadable(rml, writer);
       writer.end(function (error, result) {
-        console.log(result);
+        //console.log(result);
       });
     });
   });
@@ -93,7 +93,6 @@ describe('JSON:', function () {
 
     //the column names need to have double quotes around the header
     let dataSources = [{
-      type: 'json',
       sourceDescription: {
         type: 'json',
         source: 'person.json',
@@ -121,7 +120,7 @@ describe('JSON:', function () {
 
       makeReadable(rml, writer);
       writer.end(function (error, result) {
-        console.log(result);
+        //console.log(result);
       });
     });
   });

@@ -63,7 +63,7 @@ describe('CSV:', function () {
 
       makeReadable(rml, writer);
       writer.end(function (error, result) {
-        console.log(result);
+        //console.log(result);
       });
     });
   });
@@ -124,7 +124,7 @@ describe('CSV:', function () {
 
       makeReadable(rml, writer);
       writer.end(function (error, result) {
-        console.log(result);
+        //console.log(result);
       });
     });
   });
