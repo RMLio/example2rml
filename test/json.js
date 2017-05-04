@@ -36,7 +36,7 @@ describe('JSON:', function () {
 
     //the column names need to have double quotes around the header
     let dataSources = [{
-      sourceDescription: {type: 'json'},
+      sourceDescription: {type: 'json', iterator: '$'},
       object: {
         name: {
           first: 'Pieter',
@@ -96,7 +96,7 @@ describe('JSON:', function () {
       sourceDescription: {
         type: 'json',
         source: 'person.json',
-        iterator: '$.persons.person'
+        iterator: '$'
       },
       object: {
         name: {
@@ -122,6 +122,66 @@ describe('JSON:', function () {
       writer.end(function (error, result) {
         //console.log(result);
       });
+    });
+  });
+
+  it('without iterator', function () {
+    this.timeout(10000);
+    let triples = [
+      {
+        subject: 'http://www.example.com/pieter',
+        predicate: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+        object: 'http://www.example.com#Person'
+      },
+      {
+        subject: 'http://www.example.com/pieter',
+        predicate: 'http://www.example.com#firstName',
+        object: '"Pieter"'
+      },
+      {
+        subject: 'http://www.example.com/pieter',
+        predicate: 'http://www.example.com#lastName',
+        object: '"Heyvaert"'
+      },
+      {
+        subject: 'http://www.example.com/pieter',
+        predicate: 'http://www.example.com#age',
+        object: '"26"'
+      }
+    ];
+
+    //the column names need to have double quotes around the header
+    let dataSources = [{
+      sourceDescription: {
+        type: 'json',
+        source: 'person.json'
+      },
+      object: {
+        persons: [{
+          name: {
+            first: 'Pieter',
+            last: 'Heyvaert'
+          },
+          age: "26"
+        }]
+      }
+    }];
+
+    return example2rml(triples, dataSources).then(function (rml) {
+      assert.deepEqual(rml, require('./index.json').mappings[4], 'RML triples are not correct.');
+      // let writer = N3.Writer({
+      //   prefixes: {
+      //     rr: 'http://www.w3.org/ns/r2rml#',
+      //     rml: 'http://semweb.mmlab.be/ns/rml#',
+      //     ex: 'http://www.example.com/',
+      //     foaf: 'http://xmlns.com/foaf/0.1/'
+      //   }
+      // });
+      //
+      // makeReadable(rml, writer);
+      // writer.end(function (error, result) {
+      //   console.log(result);
+      // });
     });
   });
 });

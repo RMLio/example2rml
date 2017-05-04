@@ -53,8 +53,12 @@ describe('Aligner:', function () {
 
     let smg = new SemanticModelGenerator(triples);
     return smg.getModel().then(function (sm) {
-      let aligner = new Aligner(dataSources);
-      aligner.align(sm);
+      try {
+        let aligner = new Aligner(dataSources);
+        aligner.align(sm);
+      } catch (e) {
+        console.log(e);
+      }
       //console.log(sm);
       assert.equal(sm.get(1).label, 'firstname', 'Correct label is not found.');
       assert.equal(sm.get(3).label, 'lastname', 'Correct label is not found.');
@@ -236,6 +240,7 @@ describe('Aligner:', function () {
       type: 'json',
       sourceDescription: {
         type: 'json',
+        iterator: '$',
         source: 'person.json'
       },
       object: {
@@ -250,6 +255,7 @@ describe('Aligner:', function () {
       type: 'json',
       sourceDescription: {
         type: 'json',
+        iterator: '$',
         source: 'car.json'
       },
       object: {
@@ -320,6 +326,7 @@ describe('Aligner:', function () {
       type: 'json',
       sourceDescription: {
         type: 'json',
+        iterator: '$',
         source: 'person.json'
       },
       object: {
