@@ -381,4 +381,47 @@ describe('Aligner:', function () {
       assert.equal(brandNodeCounter, 1, 'Brand node is not correct or not found.');
     });
   });
+
+  it('Single Value - JSON', function () {
+    let triples = [
+      {
+        subject: 'http://www.example.com/AAA',
+        predicate: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+        object: 'http://www.example.com#Person'
+      },
+      {
+        subject: 'http://www.example.com/AAA',
+        predicate: 'http://www.example.com#title',
+        object: '"AAA"'
+      }
+    ];
+
+    //the column names need to have double quotes around the header
+    let dataSources = [{
+      sourceDescription: {
+        type: 'json',
+        source: 'test.json'
+      },
+      object: {
+        content: [{
+          Author: 'K. I.',
+          title: 'AAA'
+        },{
+          Author: 'Z. D.',
+          title: 'BBB'
+        }]
+      }
+    }];
+
+    let smg = new SemanticModelGenerator(triples);
+    return smg.getModel().then(function (sm) {
+      let aligner = new Aligner(dataSources);
+      aligner.align(sm);
+      //console.log(sm);
+
+      sm.getAllNodes().forEach(function (node) {
+        assert.equal(node.sourceDescription.iterator, '$.content[*]', 'Iterator is not correct.');
+      });
+    });
+  });
 });
