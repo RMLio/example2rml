@@ -184,4 +184,51 @@ describe('JSON:', function () {
       // });
     });
   });
+
+  it('invalid iterator', function () {
+    this.timeout(10000);
+    let triples = [
+      {
+        subject: 'http://www.example.com/pieter',
+        predicate: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+        object: 'http://www.example.com#Person'
+      },
+      {
+        subject: 'http://www.example.com/pieter',
+        predicate: 'http://www.example.com#firstName',
+        object: '"Pieter"'
+      },
+      {
+        subject: 'http://www.example.com/pieter',
+        predicate: 'http://www.example.com#lastName',
+        object: '"Heyvaert"'
+      },
+      {
+        subject: 'http://www.example.com/pieter',
+        predicate: 'http://www.example.com#age',
+        object: '"26"'
+      }
+    ];
+
+    //the column names need to have double quotes around the header
+    let dataSources = [{
+      sourceDescription: {
+        type: 'json',
+        source: 'person.json',
+        iterator: '$.[*]'
+      },
+      object: {
+        name: {
+          first: 'Pieter',
+          last: 'Heyvaert'
+        },
+        age: "26"
+      }
+    }];
+
+    return example2rml(triples, dataSources).
+    catch(function(e){
+      assert.equal(e.name, 'InvalidIteratorError', 'Error is incorrect.');
+    });
+  });
 });
