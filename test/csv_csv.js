@@ -65,7 +65,7 @@ describe('CSV + CSV', function () {
         column: 'ID',
         value: '1'
       }, {
-        column: 'name',
+        column: 'firstname',
         value: 'Luke'
       }, {
         column: 'lastname',
