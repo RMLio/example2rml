@@ -61,10 +61,10 @@ describe('CSV:', function () {
 
       //console.log(rml);
 
-      makeReadable(rml, writer);
-      writer.end(function (error, result) {
-        //console.log(result);
-      });
+      // makeReadable(rml, writer);
+      // writer.end(function (error, result) {
+      //   console.log(result);
+      // });
     });
   });
 
@@ -122,10 +122,10 @@ describe('CSV:', function () {
         foaf: 'http://xmlns.com/foaf/0.1/'
       }});
 
-      makeReadable(rml, writer);
-      writer.end(function (error, result) {
-        //console.log(result);
-      });
+      // makeReadable(rml, writer);
+      // writer.end(function (error, result) {
+      //   console.log(result);
+      // });
     });
   });
 });

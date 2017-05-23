@@ -59,10 +59,10 @@ describe('JSON:', function () {
 
       //console.log(rml);
 
-      makeReadable(rml, writer);
-      writer.end(function (error, result) {
-        //console.log(result);
-      });
+      //makeReadable(rml, writer);
+      //writer.end(function (error, result) {
+      //  console.log(result);
+      //});
     });
   });
 
@@ -118,10 +118,10 @@ describe('JSON:', function () {
         }
       });
 
-      makeReadable(rml, writer);
-      writer.end(function (error, result) {
-        //console.log(result);
-      });
+      // makeReadable(rml, writer);
+      // writer.end(function (error, result) {
+      //   console.log(result);
+      // });
     });
   });
 
