@@ -2,7 +2,7 @@
  * Created by pheyvaer on 19.05.17.
  */
 
-let makeReadable = require('readable-rml');
+let makeReadable = require('readable-rml').makeReadable;
 let N3 = require('n3');
 
 function showReadableRML(rml){

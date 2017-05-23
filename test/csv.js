@@ -5,7 +5,7 @@
 let assert = require('chai').assert;
 let example2rml = require('../index.js');
 let type = require('semanticmodel').nodeType.types;
-let makeReadable = require('readable-rml');
+let utils = require('./utils.js');
 let N3 = require('n3');
 
 describe('CSV:', function () {
@@ -59,12 +59,7 @@ describe('CSV:', function () {
         foaf: 'http://xmlns.com/foaf/0.1/'
       }});
 
-      //console.log(rml);
-
-      // makeReadable(rml, writer);
-      // writer.end(function (error, result) {
-      //   console.log(result);
-      // });
+      //utils.showReadableRML(rml);
     });
   });
 
@@ -122,10 +117,7 @@ describe('CSV:', function () {
         foaf: 'http://xmlns.com/foaf/0.1/'
       }});
 
-      // makeReadable(rml, writer);
-      // writer.end(function (error, result) {
-      //   console.log(result);
-      // });
+      //utils.showReadableRML(rml);
     });
   });
 });
