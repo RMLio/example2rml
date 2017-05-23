@@ -85,4 +85,4 @@ example2rml(triples, dataSources).then(console.log);
 ```
 
 ## Support Data Formats
-At the moment only tables are supported.
+At the moment CSV and JSON are supported.
