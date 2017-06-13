@@ -1,0 +1,5 @@
+<http://www.example.com/John> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.example.com/Person> .
+<http://www.example.com/John> <http://www.example.com/name> 'John'.
+<http://www.example.com/John> <http://www.example.com/age> '20'.
+<http://www.example.com/John> <http://www.example.com/surname> 'Doe'.
+
