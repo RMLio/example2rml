@@ -1,13 +1,13 @@
 {
   "name": "example2rml",
   "version": "0.0.8",
-  "description": "Example-Based Mapping Generation. You provide the original data and an RDF example. We generate an RML mapping.",
+  "description": "Example-Based Mapping Generation. You provide the original data and an RDF example. This librarynpm  generate an RML mapping.",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec"
   },
-  "author": "Pieter Heyvaert",
-  "license": "UNLICENSED",
+  "author": "Pieter Heyvaert <pheyvaer.heyvaert@ugent.be> (https://pieterheyvaert.com)",
+  "license": "MIT",
   "dependencies": {
     "commander": "^2.9.0",
     "csv-parse": "^1.2.0",

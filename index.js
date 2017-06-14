@@ -13,7 +13,11 @@ let Q = require('q');
  * @param dataSources: the data sources from which the triples are being mapped
  * @returns {promise}: the promise that will resolve once the RML mapping is generated (RDF triples are provided)
  */
-function generate(triples, dataSources){
+function generate(triples, dataSources, options = {}){
+  if (options.joinConditions === undefined) {
+    options.joinConditions = true;
+  }
+
   let deferred = Q.defer();
   let smg = new SemanticModelGenerator(triples);
   let aligner = new Aligner(dataSources);
@@ -23,7 +27,7 @@ function generate(triples, dataSources){
   smg.getModel().then(function(sm) {
     //2. align the semantic model with the data sources
     try {
-      aligner.align(sm);
+      aligner.align(sm, options.joinConditions);
     } catch(e) {
       deferred.reject(e);
     }
