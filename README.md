@@ -47,6 +47,11 @@ The RML mapping will look something like this.
 
 ## Usage
 
+### Node.js
+
+Install the module via `npm install example2rml`.
+Below you can find an example on how to use the module.
+
 ```$JavaScript
 let example2rml = require('example2rml');
 
@@ -84,6 +89,13 @@ let dataSources = [{
 
 example2rml(triples, dataSources).then(console.log);
 ```
+
+### Command Line Interface
+
+Install the module via `npm install -g example2rml`.
+You execute an example via `example2rml -i ./demo/1/data.csv -t ./demo/1/example2rml.nt`, where `-i` is a comma separated list of paths to input data sources and `-t` is the path to the example triples.
+More information and other options can be found via `example2rml -h`.
+
 
 ## Supported Data Formats
 At the moment CSV and JSON are supported.
