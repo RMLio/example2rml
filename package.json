@@ -27,5 +27,6 @@
   },
   "bin": {
     "example2rml": "./bin/cli.js"
-  }
+  },
+  "repository": "https://git.datasciencelab.ugent.be/pheyvaer/example2rml"
 }
