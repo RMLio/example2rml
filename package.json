@@ -1,6 +1,6 @@
 {
   "name": "example2rml",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Example-Based Mapping Generation. You provide the original data and an RDF example. This librarynpm  generate an RML mapping.",
   "main": "index.js",
   "scripts": {
