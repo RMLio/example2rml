@@ -4,8 +4,8 @@
  */
 
 let assert = require('chai').assert;
-let SemanticModelGenerator = require('../lib/semanticmodelgenerator.js');
-let Aligner = require('../lib/aligner.js');
+let SemanticModelGenerator = require('../../lib/semanticmodelgenerator.js');
+let Aligner = require('../../lib/aligner.js');
 let type = require('semanticmodel').nodeType.types;
 
 describe('Aligner:', function () {

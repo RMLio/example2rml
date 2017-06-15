@@ -4,11 +4,11 @@
  */
 
 let assert = require('chai').assert;
-let example2rml = require('../index.js');
+let example2rml = require('../../index.js');
 let type = require('semanticmodel').nodeType.types;
-let utils = require('../lib/utils.js');
+let utils = require('../../lib/utils.js');
 
-describe('JSON + JSON', function () {
+describe('CSV + JSON', function () {
   it('#1', function () {
     let triples = [
       {
@@ -40,19 +40,23 @@ describe('JSON + JSON', function () {
 
     let dataSources = [{
       sourceDescription: {
-        type: 'json',
-        source: 'data1.json'
+        type: 'csv',
+        source: 'data1.csv'
       },
-      object: {
-        persons: [
-          {
-            ID: '0',
-            name: 'John',
-            age: '30',
-            friend_id: '1'
-          }
-        ]
+      row: [{
+        column: 'ID',
+        value: '0'
+      }, {
+        column: 'name',
+        value: 'John'
+      }, {
+        column: 'age',
+        value: '30'
+      }, {
+        column: 'friend_id',
+        value: '1'
       }
+      ]
     }, {
       sourceDescription: {
         type: 'json',
@@ -60,14 +64,14 @@ describe('JSON + JSON', function () {
       },
       object:{
         friends: [{ID: '1',
-        firstname: 'Luke',
-        lastname: 'Skywalker'
-      }]}
+          firstname: 'Luke',
+          lastname: 'Skywalker'
+        }]}
     }];
 
     return example2rml(triples, dataSources).then(function (rml) {
       //console.log(JSON.stringify(rml));
-      assert.deepEqual(rml, require('./json_json.json').mappings[0], 'RML triples are not correct.');
+      assert.deepEqual(rml, require('./csv_json.json').mappings[0], 'RML triples are not correct.');
       //utils.showReadableRML(rml);
     });
   });
@@ -103,19 +107,23 @@ describe('JSON + JSON', function () {
 
     let dataSources = [{
       sourceDescription: {
-        type: 'json',
-        source: 'data1.json'
+        type: 'csv',
+        source: 'data1.csv'
       },
-      object: {
-        persons: [
-          {
-            ID: '0',
-            name: 'John',
-            age: '30',
-            friend_id: '1'
-          }
-        ]
+      row: [{
+        column: 'ID',
+        value: '0'
+      }, {
+        column: 'name',
+        value: 'John'
+      }, {
+        column: 'age',
+        value: '30'
+      }, {
+        column: 'friend_id',
+        value: '1'
       }
+      ]
     }, {
       sourceDescription: {
         type: 'json',
@@ -130,7 +138,7 @@ describe('JSON + JSON', function () {
 
     return example2rml(triples, dataSources).then(function (rml) {
       //console.log(JSON.stringify(rml));
-      assert.deepEqual(rml, require('./json_json.json').mappings[1], 'RML triples are not correct.');
+      assert.deepEqual(rml, require('./csv_json.json').mappings[1], 'RML triples are not correct.');
       //utils.showReadableRML(rml);
     });
   });

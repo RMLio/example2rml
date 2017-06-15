@@ -4,7 +4,7 @@
   "description": "Example-Based Mapping Generation. You provide the original data and an RDF example. This librarynpm  generate an RML mapping.",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --reporter spec"
+    "test": "mocha $(find test -name '*.js' -not -path '*/browser/*')"
   },
   "author": "Pieter Heyvaert <pheyvaer.heyvaert@ugent.be> (https://pieterheyvaert.com)",
   "license": "MIT",
@@ -22,6 +22,8 @@
     "winston": "^2.3.1"
   },
   "devDependencies": {
+    "babili": "^0.1.3",
+    "browserify": "^14.4.0",
     "chai": "^3.5.0",
     "mocha": "^3.2.0"
   },

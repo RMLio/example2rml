@@ -4,10 +4,10 @@
  */
 
 let assert = require('chai').assert;
-let example2rml = require('../index.js');
+let example2rml = require('../../index.js');
 let type = require('semanticmodel').nodeType.types;
 let N3 = require('n3');
-const utils = require('../lib/utils.js');
+const utils = require('../../lib/utils.js');
 
 describe('JSON:', function () {
   it('single entity with attributes', function () {

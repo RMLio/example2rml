@@ -4,7 +4,7 @@
  */
 
 let assert = require('chai').assert;
-let SemanticModelGenerator = require('../lib/semanticmodelgenerator.js');
+let SemanticModelGenerator = require('../../lib/semanticmodelgenerator.js');
 let type = require('semanticmodel').nodeType.types;
 
 describe('SemanticModelGenerator:', function () {

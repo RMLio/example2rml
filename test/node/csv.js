@@ -4,9 +4,9 @@
  */
 
 let assert = require('chai').assert;
-let example2rml = require('../index.js');
+let example2rml = require('../../index.js');
 let type = require('semanticmodel').nodeType.types;
-let utils = require('../lib/utils.js');
+let utils = require('../../lib/utils.js');
 let N3 = require('n3');
 
 describe('CSV:', function () {
