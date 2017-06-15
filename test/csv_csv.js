@@ -1,5 +1,6 @@
 /**
- * Created by pheyvaer on 19.05.17.
+ * author: Pieter Heyvaert (pheyvaer.heyvaert@ugent.be)
+ * Ghent University - imec - IDLab
  */
 
 let assert = require('chai').assert;
