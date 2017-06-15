@@ -69,7 +69,9 @@ describe('CSV + JSON', function () {
         }]}
     }];
 
-    return example2rml(triples, dataSources).then(function (rml) {
+    return example2rml(triples, dataSources, {
+      joinConditions: false
+    }).then(function (rml) {
       //console.log(JSON.stringify(rml));
       assert.deepEqual(rml, require('./csv_json.json').mappings[0], 'RML triples are not correct.');
       //utils.showReadableRML(rml);
@@ -136,7 +138,9 @@ describe('CSV + JSON', function () {
         }]}
     }];
 
-    return example2rml(triples, dataSources).then(function (rml) {
+    return example2rml(triples, dataSources, {
+      joinConditions: false
+    }).then(function (rml) {
       //console.log(JSON.stringify(rml));
       assert.deepEqual(rml, require('./csv_json.json').mappings[1], 'RML triples are not correct.');
       //utils.showReadableRML(rml);

@@ -65,7 +65,9 @@ describe('JSON + JSON', function () {
       }]}
     }];
 
-    return example2rml(triples, dataSources).then(function (rml) {
+    return example2rml(triples, dataSources, {
+      joinConditions: false
+    }).then(function (rml) {
       //console.log(JSON.stringify(rml));
       assert.deepEqual(rml, require('./json_json.json').mappings[0], 'RML triples are not correct.');
       //utils.showReadableRML(rml);
@@ -128,9 +130,74 @@ describe('JSON + JSON', function () {
         }]}
     }];
 
-    return example2rml(triples, dataSources).then(function (rml) {
+    return example2rml(triples, dataSources, {
+      joinConditions: false
+    }).then(function (rml) {
       //console.log(JSON.stringify(rml));
       assert.deepEqual(rml, require('./json_json.json').mappings[1], 'RML triples are not correct.');
+      //utils.showReadableRML(rml);
+    });
+  });
+
+  it('#3', function () {
+    let triples = [
+      {
+        subject: 'http://www.example.com/person/0',
+        predicate: 'http://www.example.com/name',
+        object: '"John"'
+      },
+      {
+        subject: 'http://www.example.com/person/0',
+        predicate: 'http://www.example.com/age',
+        object: '"30"'
+      },
+      {
+        subject: 'http://www.example.com/person/0',
+        predicate: 'http://www.example.com/friend',
+        object: 'http://www.example.com/friend/Luke'
+      },
+      {
+        subject: 'http://www.example.com/friend/Luke',
+        predicate: 'http://www.example.com/firstname',
+        object: '"Luke"'
+      },
+      {
+        subject: 'http://www.example.com/friend/Luke',
+        predicate: 'http://www.example.com/lastname',
+        object: '"Skywalker"'
+      }
+    ];
+
+    let dataSources = [{
+      sourceDescription: {
+        type: 'json',
+        source: 'data1.json'
+      },
+      object: {
+        persons: [
+          {
+            ID: '0',
+            name: 'John',
+            age: '30',
+            friend_id: '1'
+          }
+        ]
+      }
+    }, {
+      sourceDescription: {
+        type: 'json',
+        source: 'data2.json'
+      },
+      object:{
+        friends: [{ID: '1',
+          firstname: 'Luke',
+          lastname: 'Skywalker'
+        }]}
+    }];
+
+    return example2rml(triples, dataSources).then(function (rml) {
+      //console.log(JSON.stringify(rml));
+      assert.deepEqual(rml, require('./json_json.json').mappings[2], 'RML triples are not correct.');
       //utils.showReadableRML(rml);
     });
   });
