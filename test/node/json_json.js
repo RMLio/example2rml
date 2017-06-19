@@ -4,12 +4,12 @@
  */
 
 let assert = require('chai').assert;
-let example2rml = require('../../index.js');
 let type = require('semanticmodel').nodeType.types;
 let utils = require('../../lib/utils.js');
 
 describe('JSON + JSON', function () {
   it('#1', function () {
+    let example2rml = require('../../index.js');
     let triples = [
       {
         subject: 'http://www.example.com/person/0',
@@ -75,6 +75,7 @@ describe('JSON + JSON', function () {
   });
 
   it('#2', function () {
+    let example2rml = require('../../index.js');
     let triples = [
       {
         subject: 'http://www.example.com/person/0',
@@ -140,6 +141,7 @@ describe('JSON + JSON', function () {
   });
 
   it('#3', function () {
+    let example2rml = require('../../index.js');
     let triples = [
       {
         subject: 'http://www.example.com/person/0',
