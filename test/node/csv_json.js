@@ -215,4 +215,86 @@ describe('CSV + JSON', function () {
       //utils.showReadableRML(rml);
     });
   });
+
+  it('#4', function () {
+    let triples = [
+      {
+        subject: 'http://www.example.com/person/0',
+        predicate: 'http://www.example.com/name',
+        object: '"John"'
+      },
+      {
+        subject: 'http://www.example.com/person/0',
+        predicate: 'http://www.example.com/age',
+        object: '"30"'
+      },
+      {
+        subject: 'http://www.example.com/person/0',
+        predicate: 'http://www.example.com/friend',
+        object: 'http://www.example.com/friend/Luke'
+      },
+      {
+        subject: 'http://www.example.com/friend/Luke',
+        predicate: 'http://www.example.com/firstname',
+        object: '"Luke"'
+      },
+      {
+        subject: 'http://www.example.com/friend/Luke',
+        predicate: 'http://www.example.com/lastname',
+        object: '"Skywalker"'
+      }
+    ];
+
+    let dataSources = [{
+      sourceDescription: {
+        type: 'csv',
+        source: 'data1.csv'
+      },
+      row: [{
+        column: 'ID',
+        value: '0'
+      }, {
+        column: 'name',
+        value: 'John'
+      }, {
+        column: 'age',
+        value: '30'
+      }, {
+        column: 'friend',
+        value: '1'
+      }
+      ]
+    }, {
+      sourceDescription: {
+        type: 'json',
+        source: 'data2.json'
+      },
+      object:{
+        persons: [
+          {
+            ID: 1,
+            firstname: 'Luke',
+            lastname: 'Skywalker'
+          },
+          {
+            ID: '2',
+            firstname: 'Jane',
+            lastname: 'Doe'
+          },
+          {
+            ID: '3',
+            firstname: 'Chuck',
+            lastname: 'Norris'
+          }
+        ]}
+    }];
+
+    return example2rml(triples, dataSources, {
+      joinConditions: true
+    }).then(function (rml) {
+      console.log(JSON.stringify(rml));
+      //assert.deepEqual(rml, require('./csv_json.json').mappings[2], 'RML triples are not correct.');
+      //utils.showReadableRML(rml);
+    });
+  });
 });
