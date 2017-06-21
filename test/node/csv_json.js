@@ -292,8 +292,8 @@ describe('CSV + JSON', function () {
     return example2rml(triples, dataSources, {
       joinConditions: true
     }).then(function (rml) {
-      console.log(JSON.stringify(rml));
-      //assert.deepEqual(rml, require('./csv_json.json').mappings[2], 'RML triples are not correct.');
+      //console.log(JSON.stringify(rml));
+      assert.deepEqual(rml, require('./csv_json.json').mappings[3], 'RML triples are not correct.');
       //utils.showReadableRML(rml);
     });
   });
