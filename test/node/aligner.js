@@ -193,11 +193,11 @@ describe('Aligner:', function () {
       let firstNameCounter = 0;
 
       sm.getAllNodes().forEach(function (node) {
-        if (node.label === 'firstname' && node.sourceDescription.source === 'person-data' && node.sample === 'Pieter') {
+        if (node.label === 'firstname' && node.sourceDescription.source === 'person-data' && node.sample.value === 'Pieter') {
           firstNameCounter++;
         }
 
-        if (node.label === 'brand' && node.sourceDescription.source === 'car-data' && node.sample === 'Peugeot') {
+        if (node.label === 'brand' && node.sourceDescription.source === 'car-data' && node.sample.value === 'Peugeot') {
           brandNodeCounter++;
         }
       });
@@ -279,11 +279,11 @@ describe('Aligner:', function () {
       let firstNameCounter = 0;
 
       sm.getAllNodes().forEach(function (node) {
-        if (node.label === 'name.first' && node.sourceDescription.source === 'person.json' && node.sample === 'Pieter') {
+        if (node.label === 'name.first' && node.sourceDescription.source === 'person.json' && node.sample.value === 'Pieter') {
           firstNameCounter++;
         }
 
-        if (node.label === 'brand' && node.sourceDescription.source === 'car.json' && node.sample === 'Peugeot') {
+        if (node.label === 'brand' && node.sourceDescription.source === 'car.json' && node.sample.value === 'Peugeot') {
           brandNodeCounter++;
         }
       });
@@ -369,11 +369,11 @@ describe('Aligner:', function () {
       let firstNameCounter = 0;
 
       sm.getAllNodes().forEach(function (node) {
-        if (node.label === 'name.first' && node.sourceDescription.source === 'person.json' && node.sample === 'Pieter') {
+        if (node.label === 'name.first' && node.sourceDescription.source === 'person.json' && node.sample.value === 'Pieter') {
           firstNameCounter++;
         }
 
-        if (node.label === 'brand' && node.sourceDescription.source === 'car.csv' && node.sample === 'Peugeot') {
+        if (node.label === 'brand' && node.sourceDescription.source === 'car.csv' && node.sample.value === 'Peugeot') {
           brandNodeCounter++;
         }
       });
@@ -423,6 +423,88 @@ describe('Aligner:', function () {
       sm.getAllNodes().forEach(function (node) {
         assert.equal(node.sourceDescription.iterator, '$.content[*]', 'Iterator is not correct.');
       });
+    });
+  });
+
+  it('datatype', function () {
+    let triples = [
+      {
+        subject: 'http://www.example.com/AAA',
+        predicate: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+        object: 'http://www.example.com#Person'
+      },
+      {
+        subject: 'http://www.example.com/AAA',
+        predicate: 'http://www.example.com#title',
+        object: '"AAA"^^http://www.example.com#String'
+      }
+    ];
+
+    let dataSources = [{
+      sourceDescription: {
+        type: 'json',
+        source: 'test.json'
+      },
+      object: {
+        content: [{
+          Author: 'K. I.',
+          title: 'AAA'
+        },{
+          Author: 'Z. D.',
+          title: 'BBB'
+        }]
+      }
+    }];
+
+    let smg = new SemanticModelGenerator(triples);
+    return smg.getModel().then(function (sm) {
+      let aligner = new Aligner(dataSources);
+      aligner.align(sm);
+
+      assert.equal(sm.get(1).label, 'title', 'Correct label is not found.');
+      assert.equal(sm.get(1).sample.value, 'AAA', 'Correct sample value is not found.');
+      assert.equal(sm.get(1).sample.type, 'http://www.example.com#String', 'Correct sample datatype is not found.');
+    });
+  });
+
+  it('language', function () {
+    let triples = [
+      {
+        subject: 'http://www.example.com/AAA',
+        predicate: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+        object: 'http://www.example.com#Person'
+      },
+      {
+        subject: 'http://www.example.com/AAA',
+        predicate: 'http://www.example.com#title',
+        object: '"AAA"@en'
+      }
+    ];
+
+    let dataSources = [{
+      sourceDescription: {
+        type: 'json',
+        source: 'test.json'
+      },
+      object: {
+        content: [{
+          Author: 'K. I.',
+          title: 'AAA'
+        },{
+          Author: 'Z. D.',
+          title: 'BBB'
+        }]
+      }
+    }];
+
+    let smg = new SemanticModelGenerator(triples);
+    return smg.getModel().then(function (sm) {
+      let aligner = new Aligner(dataSources);
+      aligner.align(sm);
+
+      assert.equal(sm.get(1).label, 'title', 'Correct label is not found.');
+      assert.equal(sm.get(1).sample.value, 'AAA', 'Correct sample value is not found.');
+      assert.equal(sm.get(1).sample.language, 'en', 'Correct sample language is not found.');
     });
   });
 });
