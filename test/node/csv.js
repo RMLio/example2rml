@@ -121,4 +121,89 @@ describe('CSV:', function () {
       //utils.showReadableRML(rml);
     });
   });
+
+  it('language', function () {
+    let triples = [
+      {
+        subject: 'http://www.example.com/pieter',
+        predicate: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+        object: 'http://www.example.com#Person'
+      },
+      {
+        subject: 'http://www.example.com/pieter',
+        predicate: 'http://www.example.com#firstName',
+        object: '"Pieter"@en'
+      }
+    ];
+
+    //the column names need to have double quotes around the header
+    let dataSources = [{
+      type: 'csv',
+      sourceDescription: {
+        type: 'csv',
+        source: '/tmp/input.csv'
+      },
+      row: [{
+        column: 'firstname',
+        value: 'Pieter'
+      },{
+        column: 'lastname',
+        value: 'Heyvaert'
+      },{
+        column: 'age',
+        value: '26'
+      }
+      ]
+    }];
+
+    return example2rml(triples, dataSources).then(function(rml){
+      //console.log(JSON.stringify(rml));
+      assert.deepEqual(rml, require('./index.json').mappings[6], 'RML triples are not correct.');
+
+      //utils.showReadableRML(rml);
+    });
+  });
+
+  it('datatype', function () {
+    this.timeout(10000);
+    let triples = [
+      {
+        subject: 'http://www.example.com/pieter',
+        predicate: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+        object: 'http://www.example.com#Person'
+      },
+      {
+        subject: 'http://www.example.com/pieter',
+        predicate: 'http://www.example.com#firstName',
+        object: '"Pieter"^^http://www.example.com/String'
+      }
+    ];
+
+    //the column names need to have double quotes around the header
+    let dataSources = [{
+      type: 'csv',
+      sourceDescription: {
+        type: 'csv',
+        source: '/tmp/input.csv'
+      },
+      row: [{
+        column: 'firstname',
+        value: 'Pieter'
+      },{
+        column: 'lastname',
+        value: 'Heyvaert'
+      },{
+        column: 'age',
+        value: '26'
+      }
+      ]
+    }];
+
+    return example2rml(triples, dataSources).then(function(rml){
+      //console.log(JSON.stringify(rml));
+      assert.deepEqual(rml, require('./index.json').mappings[7], 'RML triples are not correct.');
+
+      //utils.showReadableRML(rml);
+    });
+  });
 });
