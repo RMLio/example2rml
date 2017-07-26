@@ -119,7 +119,6 @@ describe('JSON:', function () {
   });
 
   it('without iterator', function () {
-    this.timeout(10000);
     let triples = [
       {
         subject: 'http://www.example.com/pieter',
@@ -167,7 +166,6 @@ describe('JSON:', function () {
   });
 
   it('invalid iterator', function () {
-    this.timeout(10000);
     let triples = [
       {
         subject: 'http://www.example.com/pieter',

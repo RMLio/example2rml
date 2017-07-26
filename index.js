@@ -25,16 +25,17 @@ function generate(triples, dataSources, options = {}){
   let rmg = new RMLMappingGenerator({baseIRI: 'http://www.mymapping.com#'});
 
   //1. generate the semantic model
-  smg.getModel().then(function(sm) {
-    //2. align the semantic model with the data sources
-    try {
-      aligner.align(sm, options.joinConditions);
-    } catch(e) {
-      deferred.reject(e);
-    }
-    //3. generate RML from the semantic model
-    deferred.resolve(rmg.generate(sm));
-  });
+  let sm = smg.getModel();
+
+  //2. align the semantic model with the data sources
+  try {
+    aligner.align(sm, options.joinConditions);
+  } catch(e) {
+    deferred.reject(e);
+  }
+
+  //3. generate RML from the semantic model
+  deferred.resolve(rmg.generate(sm));
 
   return deferred.promise;
 }

@@ -33,15 +33,14 @@ describe('SemanticModelGenerator:', function () {
     ];
 
     let smg = new SemanticModelGenerator(triples);
-    return smg.getModel().then(function (sm) {
+    let sm = smg.getModel();
       //console.log(sm);
-      assert.equal(sm.getAllNodes(type.CLASS).length, 1, 'Number of class nodes is not correct.');
-      assert.equal(sm.getAllNodes(type.DATAREFERENCE).length, 3, 'Number of data nodes is not correct.');
-      assert.equal(sm.getAllEdges().length, 3, 'Number of edges is not correct.');
-      assert.equal(sm.getEdges('http://www.example.com#firstName').length, 1, 'Firstname label not correct.');
-      assert.equal(sm.getEdges('http://www.example.com#lastName').length, 1, 'Lastname label not correct.');
-      assert.equal(sm.getEdges('http://www.example.com#age').length, 1, 'Age label not correct.');
-    });
+    assert.equal(sm.getAllNodes(type.CLASS).length, 1, 'Number of class nodes is not correct.');
+    assert.equal(sm.getAllNodes(type.DATAREFERENCE).length, 3, 'Number of data nodes is not correct.');
+    assert.equal(sm.getAllEdges().length, 3, 'Number of edges is not correct.');
+    assert.equal(sm.getEdges('http://www.example.com#firstName').length, 1, 'Firstname label not correct.');
+    assert.equal(sm.getEdges('http://www.example.com#lastName').length, 1, 'Lastname label not correct.');
+    assert.equal(sm.getEdges('http://www.example.com#age').length, 1, 'Age label not correct.');
   });
 
   it('2 entities', function () {
@@ -74,16 +73,15 @@ describe('SemanticModelGenerator:', function () {
     ];
 
     let smg = new SemanticModelGenerator(triples);
-    return smg.getModel().then(function (sm) {
+    let sm = smg.getModel();
 
-      assert.equal(sm.getAllNodes(type.CLASS).length, 2, 'Number of class nodes is not correct.');
-      assert.equal(sm.getAllNodes(type.DATAREFERENCE).length, 2, 'Number of data nodes is not correct.');
-      assert.equal(sm.getAllEdges().length, 3, 'Number of edges is not correct.');
-      assert.equal(sm.getEdges('http://www.example.com#firstName').length, 1, 'Firstname label not correct.');
-      assert.equal(sm.getEdges('http://www.example.com#brand').length, 1, 'Brand label not correct.');
-      assert.equal(sm.getEdges('http://www.example.com#owner').length, 1, 'Owner label not correct.');
-      assert.equal(sm.getEdges('http://www.example.com#owner')[0].source, 1, 'Owner edge is not correct.');
-      assert.equal(sm.getEdges('http://www.example.com#owner')[0].target, 0, 'Owner edge is not correct.');
-    });
+    assert.equal(sm.getAllNodes(type.CLASS).length, 2, 'Number of class nodes is not correct.');
+    assert.equal(sm.getAllNodes(type.DATAREFERENCE).length, 2, 'Number of data nodes is not correct.');
+    assert.equal(sm.getAllEdges().length, 3, 'Number of edges is not correct.');
+    assert.equal(sm.getEdges('http://www.example.com#firstName').length, 1, 'Firstname label not correct.');
+    assert.equal(sm.getEdges('http://www.example.com#brand').length, 1, 'Brand label not correct.');
+    assert.equal(sm.getEdges('http://www.example.com#owner').length, 1, 'Owner label not correct.');
+    assert.equal(sm.getEdges('http://www.example.com#owner')[0].source, 0, 'Owner edge is not correct.');
+    assert.equal(sm.getEdges('http://www.example.com#owner')[0].target, 1, 'Owner edge is not correct.');
   });
 });

@@ -53,18 +53,20 @@ describe('Aligner:', function () {
     }];
 
     let smg = new SemanticModelGenerator(triples);
-    return smg.getModel().then(function (sm) {
-      try {
-        let aligner = new Aligner(dataSources);
-        aligner.align(sm);
-      } catch (e) {
-        console.log(e);
-      }
-      //console.log(sm);
-      assert.equal(sm.get(1).label, 'firstname', 'Correct label is not found.');
-      assert.equal(sm.get(3).label, 'lastname', 'Correct label is not found.');
-      assert.equal(sm.get(5).label, 'age', 'Correct label is not found.');
-    });
+    let sm = smg.getModel();
+
+    try {
+      let aligner = new Aligner(dataSources);
+      aligner.align(sm);
+    } catch (e) {
+      console.log(e);
+    }
+
+    //console.log(sm);
+    assert.equal(sm.get(1).label, 'age', 'Correct label is not found.');
+    assert.equal(sm.get(3).label, 'lastname', 'Correct label is not found.');
+    assert.equal(sm.get(5).label, 'firstname', 'Correct label is not found.');
+
   });
 
   it('generate template', function () {
@@ -111,11 +113,10 @@ describe('Aligner:', function () {
     }];
 
     let smg = new SemanticModelGenerator(triples);
-    return smg.getModel().then(function (sm) {
-      let aligner = new Aligner(dataSources);
-      aligner.align(sm);
-      assert.equal(sm.get(0).template, 'http://www.example.com/{firstname}', 'Correct template is not found.');
-    });
+    let sm = smg.getModel();
+    let aligner = new Aligner(dataSources);
+    aligner.align(sm);
+    assert.equal(sm.get(0).template, 'http://www.example.com/{firstname}', 'Correct template is not found.');
   });
 
   it('2 entities - CSV', function () {
@@ -184,27 +185,26 @@ describe('Aligner:', function () {
     }];
 
     let smg = new SemanticModelGenerator(triples);
-    return smg.getModel().then(function (sm) {
-      let aligner = new Aligner(dataSources);
-      aligner.align(sm);
-      //console.log(sm);
+    let sm = smg.getModel();
+    let aligner = new Aligner(dataSources);
+    aligner.align(sm);
+    //console.log(sm);
 
-      let brandNodeCounter = 0;
-      let firstNameCounter = 0;
+    let brandNodeCounter = 0;
+    let firstNameCounter = 0;
 
-      sm.getAllNodes().forEach(function (node) {
-        if (node.label === 'firstname' && node.sourceDescription.source === 'person-data' && node.sample.value === 'Pieter') {
-          firstNameCounter++;
-        }
+    sm.getAllNodes().forEach(function (node) {
+      if (node.label === 'firstname' && node.sourceDescription.source === 'person-data' && node.sample.value === 'Pieter') {
+        firstNameCounter++;
+      }
 
-        if (node.label === 'brand' && node.sourceDescription.source === 'car-data' && node.sample.value === 'Peugeot') {
-          brandNodeCounter++;
-        }
-      });
-
-      assert.equal(firstNameCounter, 1, 'Firstname node is not correct or not found.');
-      assert.equal(brandNodeCounter, 1, 'Brand node is not correct or not found.');
+      if (node.label === 'brand' && node.sourceDescription.source === 'car-data' && node.sample.value === 'Peugeot') {
+        brandNodeCounter++;
+      }
     });
+
+    assert.equal(firstNameCounter, 1, 'Firstname node is not correct or not found.');
+    assert.equal(brandNodeCounter, 1, 'Brand node is not correct or not found.');
   });
 
   it('2 entities - JSON', function () {
@@ -270,27 +270,26 @@ describe('Aligner:', function () {
     }];
 
     let smg = new SemanticModelGenerator(triples);
-    return smg.getModel().then(function (sm) {
-      let aligner = new Aligner(dataSources);
-      aligner.align(sm);
-      //console.log(sm);
+    let sm = smg.getModel();
+    let aligner = new Aligner(dataSources);
+    aligner.align(sm);
+    //console.log(sm);
 
-      let brandNodeCounter = 0;
-      let firstNameCounter = 0;
+    let brandNodeCounter = 0;
+    let firstNameCounter = 0;
 
-      sm.getAllNodes().forEach(function (node) {
-        if (node.label === 'name.first' && node.sourceDescription.source === 'person.json' && node.sample.value === 'Pieter') {
-          firstNameCounter++;
-        }
+    sm.getAllNodes().forEach(function (node) {
+      if (node.label === 'name.first' && node.sourceDescription.source === 'person.json' && node.sample.value === 'Pieter') {
+        firstNameCounter++;
+      }
 
-        if (node.label === 'brand' && node.sourceDescription.source === 'car.json' && node.sample.value === 'Peugeot') {
-          brandNodeCounter++;
-        }
-      });
-
-      assert.equal(firstNameCounter, 1, 'Firstname node is not correct or not found.');
-      assert.equal(brandNodeCounter, 1, 'Brand node is not correct or not found.');
+      if (node.label === 'brand' && node.sourceDescription.source === 'car.json' && node.sample.value === 'Peugeot') {
+        brandNodeCounter++;
+      }
     });
+
+    assert.equal(firstNameCounter, 1, 'Firstname node is not correct or not found.');
+    assert.equal(brandNodeCounter, 1, 'Brand node is not correct or not found.');
   });
 
   it('2 entities - JSON & CSV', function () {
@@ -360,27 +359,26 @@ describe('Aligner:', function () {
     }];
 
     let smg = new SemanticModelGenerator(triples);
-    return smg.getModel().then(function (sm) {
-      let aligner = new Aligner(dataSources);
-      aligner.align(sm);
-      //console.log(sm);
+    let sm = smg.getModel();
+    let aligner = new Aligner(dataSources);
+    aligner.align(sm);
+    //console.log(sm);
 
-      let brandNodeCounter = 0;
-      let firstNameCounter = 0;
+    let brandNodeCounter = 0;
+    let firstNameCounter = 0;
 
-      sm.getAllNodes().forEach(function (node) {
-        if (node.label === 'name.first' && node.sourceDescription.source === 'person.json' && node.sample.value === 'Pieter') {
-          firstNameCounter++;
-        }
+    sm.getAllNodes().forEach(function (node) {
+      if (node.label === 'name.first' && node.sourceDescription.source === 'person.json' && node.sample.value === 'Pieter') {
+        firstNameCounter++;
+      }
 
-        if (node.label === 'brand' && node.sourceDescription.source === 'car.csv' && node.sample.value === 'Peugeot') {
-          brandNodeCounter++;
-        }
-      });
-
-      assert.equal(firstNameCounter, 1, 'Firstname node is not correct or not found.');
-      assert.equal(brandNodeCounter, 1, 'Brand node is not correct or not found.');
+      if (node.label === 'brand' && node.sourceDescription.source === 'car.csv' && node.sample.value === 'Peugeot') {
+        brandNodeCounter++;
+      }
     });
+
+    assert.equal(firstNameCounter, 1, 'Firstname node is not correct or not found.');
+    assert.equal(brandNodeCounter, 1, 'Brand node is not correct or not found.');
   });
 
   it('Single Value - JSON', function () {
@@ -415,14 +413,13 @@ describe('Aligner:', function () {
     }];
 
     let smg = new SemanticModelGenerator(triples);
-    return smg.getModel().then(function (sm) {
-      let aligner = new Aligner(dataSources);
-      aligner.align(sm);
-      //console.log(sm);
+    let sm = smg.getModel();
+    let aligner = new Aligner(dataSources);
+    aligner.align(sm);
+    //console.log(sm);
 
-      sm.getAllNodes().forEach(function (node) {
-        assert.equal(node.sourceDescription.iterator, '$.content[*]', 'Iterator is not correct.');
-      });
+    sm.getAllNodes().forEach(function (node) {
+      assert.equal(node.sourceDescription.iterator, '$.content[*]', 'Iterator is not correct.');
     });
   });
 
@@ -457,14 +454,13 @@ describe('Aligner:', function () {
     }];
 
     let smg = new SemanticModelGenerator(triples);
-    return smg.getModel().then(function (sm) {
-      let aligner = new Aligner(dataSources);
-      aligner.align(sm);
+    let sm = smg.getModel();
+    let aligner = new Aligner(dataSources);
+    aligner.align(sm);
 
-      assert.equal(sm.get(1).label, 'title', 'Correct label is not found.');
-      assert.equal(sm.get(1).sample.value, 'AAA', 'Correct sample value is not found.');
-      assert.equal(sm.get(1).sample.type, 'http://www.example.com#String', 'Correct sample datatype is not found.');
-    });
+    assert.equal(sm.get(1).label, 'title', 'Correct label is not found.');
+    assert.equal(sm.get(1).sample.value, 'AAA', 'Correct sample value is not found.');
+    assert.equal(sm.get(1).sample.type, 'http://www.example.com#String', 'Correct sample datatype is not found.');
   });
 
   it('language', function () {
@@ -498,13 +494,12 @@ describe('Aligner:', function () {
     }];
 
     let smg = new SemanticModelGenerator(triples);
-    return smg.getModel().then(function (sm) {
-      let aligner = new Aligner(dataSources);
-      aligner.align(sm);
+    let sm = smg.getModel();
+    let aligner = new Aligner(dataSources);
+    aligner.align(sm);
 
-      assert.equal(sm.get(1).label, 'title', 'Correct label is not found.');
-      assert.equal(sm.get(1).sample.value, 'AAA', 'Correct sample value is not found.');
-      assert.equal(sm.get(1).sample.language, 'en', 'Correct sample language is not found.');
-    });
+    assert.equal(sm.get(1).label, 'title', 'Correct label is not found.');
+    assert.equal(sm.get(1).sample.value, 'AAA', 'Correct sample value is not found.');
+    assert.equal(sm.get(1).sample.language, 'en', 'Correct sample language is not found.');
   });
 });

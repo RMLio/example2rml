@@ -29,7 +29,7 @@
       {
         "subject": "http://www.mymapping.com#0-POM-2",
         "predicate": "http://www.w3.org/ns/r2rml#predicate",
-        "object": "http://www.example.com#firstName"
+        "object": "http://www.example.com#age"
       },
       {
         "subject": "http://www.mymapping.com#0-POM-2",
@@ -39,7 +39,7 @@
       {
         "subject": "http://www.mymapping.com#0-OM-2",
         "predicate": "http://semweb.mmlab.be/ns/rml#reference",
-        "object": "\"firstname\""
+        "object": "\"age\""
       },
       {
         "subject": "http://www.mymapping.com#0",
@@ -69,7 +69,7 @@
       {
         "subject": "http://www.mymapping.com#0-POM-6",
         "predicate": "http://www.w3.org/ns/r2rml#predicate",
-        "object": "http://www.example.com#age"
+        "object": "http://www.example.com#firstName"
       },
       {
         "subject": "http://www.mymapping.com#0-POM-6",
@@ -79,7 +79,7 @@
       {
         "subject": "http://www.mymapping.com#0-OM-6",
         "predicate": "http://semweb.mmlab.be/ns/rml#reference",
-        "object": "\"age\""
+        "object": "\"firstname\""
       }
     ],
     [
@@ -116,7 +116,7 @@
       {
         "subject": "http://www.mymapping.com#0-POM-2",
         "predicate": "http://www.w3.org/ns/r2rml#predicate",
-        "object": "http://www.example.com#firstName"
+        "object": "http://www.example.com#age"
       },
       {
         "subject": "http://www.mymapping.com#0-POM-2",
@@ -126,7 +126,7 @@
       {
         "subject": "http://www.mymapping.com#0-OM-2",
         "predicate": "http://semweb.mmlab.be/ns/rml#reference",
-        "object": "\"firstname\""
+        "object": "\"age\""
       },
       {
         "subject": "http://www.mymapping.com#0",
@@ -156,7 +156,7 @@
       {
         "subject": "http://www.mymapping.com#0-POM-6",
         "predicate": "http://www.w3.org/ns/r2rml#predicate",
-        "object": "http://www.example.com#age"
+        "object": "http://www.example.com#firstName"
       },
       {
         "subject": "http://www.mymapping.com#0-POM-6",
@@ -166,7 +166,7 @@
       {
         "subject": "http://www.mymapping.com#0-OM-6",
         "predicate": "http://semweb.mmlab.be/ns/rml#reference",
-        "object": "\"age\""
+        "object": "\"firstname\""
       }
     ],
     [
@@ -203,7 +203,7 @@
       {
         "subject": "http://www.mymapping.com#0-POM-2",
         "predicate": "http://www.w3.org/ns/r2rml#predicate",
-        "object": "http://www.example.com#firstName"
+        "object": "http://www.example.com#age"
       },
       {
         "subject": "http://www.mymapping.com#0-POM-2",
@@ -213,7 +213,7 @@
       {
         "subject": "http://www.mymapping.com#0-OM-2",
         "predicate": "http://semweb.mmlab.be/ns/rml#reference",
-        "object": "\"name.first\""
+        "object": "\"age\""
       },
       {
         "subject": "http://www.mymapping.com#0",
@@ -243,7 +243,7 @@
       {
         "subject": "http://www.mymapping.com#0-POM-6",
         "predicate": "http://www.w3.org/ns/r2rml#predicate",
-        "object": "http://www.example.com#age"
+        "object": "http://www.example.com#firstName"
       },
       {
         "subject": "http://www.mymapping.com#0-POM-6",
@@ -253,7 +253,7 @@
       {
         "subject": "http://www.mymapping.com#0-OM-6",
         "predicate": "http://semweb.mmlab.be/ns/rml#reference",
-        "object": "\"age\""
+        "object": "\"name.first\""
       }
     ],
     [
@@ -295,7 +295,7 @@
       {
         "subject": "http://www.mymapping.com#0-POM-2",
         "predicate": "http://www.w3.org/ns/r2rml#predicate",
-        "object": "http://www.example.com#firstName"
+        "object": "http://www.example.com#age"
       },
       {
         "subject": "http://www.mymapping.com#0-POM-2",
@@ -305,7 +305,7 @@
       {
         "subject": "http://www.mymapping.com#0-OM-2",
         "predicate": "http://semweb.mmlab.be/ns/rml#reference",
-        "object": "\"name.first\""
+        "object": "\"age\""
       },
       {
         "subject": "http://www.mymapping.com#0",
@@ -335,7 +335,7 @@
       {
         "subject": "http://www.mymapping.com#0-POM-6",
         "predicate": "http://www.w3.org/ns/r2rml#predicate",
-        "object": "http://www.example.com#age"
+        "object": "http://www.example.com#firstName"
       },
       {
         "subject": "http://www.mymapping.com#0-POM-6",
@@ -345,7 +345,7 @@
       {
         "subject": "http://www.mymapping.com#0-OM-6",
         "predicate": "http://semweb.mmlab.be/ns/rml#reference",
-        "object": "\"age\""
+        "object": "\"name.first\""
       }
     ],
     [
@@ -387,7 +387,7 @@
       {
         "subject": "http://www.mymapping.com#0-POM-2",
         "predicate": "http://www.w3.org/ns/r2rml#predicate",
-        "object": "http://www.example.com#firstName"
+        "object": "http://www.example.com#age"
       },
       {
         "subject": "http://www.mymapping.com#0-POM-2",
@@ -397,7 +397,7 @@
       {
         "subject": "http://www.mymapping.com#0-OM-2",
         "predicate": "http://semweb.mmlab.be/ns/rml#reference",
-        "object": "\"name.first\""
+        "object": "\"age\""
       },
       {
         "subject": "http://www.mymapping.com#0",
@@ -427,7 +427,7 @@
       {
         "subject": "http://www.mymapping.com#0-POM-6",
         "predicate": "http://www.w3.org/ns/r2rml#predicate",
-        "object": "http://www.example.com#age"
+        "object": "http://www.example.com#firstName"
       },
       {
         "subject": "http://www.mymapping.com#0-POM-6",
@@ -437,7 +437,7 @@
       {
         "subject": "http://www.mymapping.com#0-OM-6",
         "predicate": "http://semweb.mmlab.be/ns/rml#reference",
-        "object": "\"age\""
+        "object": "\"name.first\""
       }
     ],
     [{"subject":"http://www.mymapping.com#0","predicate":"http://semweb.mmlab.be/ns/rml#logicalSource","object":"http://www.mymapping.com#0-LS"},{"subject":"http://www.mymapping.com#0-LS","predicate":"http://semweb.mmlab.be/ns/rml#referenceFormulation","object":"http://semweb.mmlab.be/ns/ql#JSONPath"},{"subject":"http://www.mymapping.com#0-LS","predicate":"http://semweb.mmlab.be/ns/rml#source","object":"\"person.json\""},{"subject":"http://www.mymapping.com#0-LS","predicate":"http://semweb.mmlab.be/ns/rml#iterator","object":"\"$.persons[*]\""},{"subject":"http://www.mymapping.com#0","predicate":"http://www.w3.org/ns/r2rml#subjectMap","object":"http://www.mymapping.com#0-SM"},{"subject":"http://www.mymapping.com#0-SM","predicate":"http://www.w3.org/ns/r2rml#template","object":"\"http://www.example.com/person/{ID}\""},{"subject":"http://www.mymapping.com#0","predicate":"http://www.w3.org/ns/r2rml#predicateObjectMap","object":"http://www.mymapping.com#0-POM-2"},{"subject":"http://www.mymapping.com#0-POM-2","predicate":"http://www.w3.org/ns/r2rml#predicate","object":"http://www.example.com/name"},{"subject":"http://www.mymapping.com#0-POM-2","predicate":"http://www.w3.org/ns/r2rml#objectMap","object":"http://www.mymapping.com#0-OM-2"},{"subject":"http://www.mymapping.com#0-OM-2","predicate":"http://semweb.mmlab.be/ns/rml#reference","object":"\"name\""},{"subject":"http://www.mymapping.com#0","predicate":"http://www.w3.org/ns/r2rml#predicateObjectMap","object":"http://www.mymapping.com#0-POM-4"},{"subject":"http://www.mymapping.com#0-POM-4","predicate":"http://www.w3.org/ns/r2rml#predicate","object":"http://www.example.com/name"},{"subject":"http://www.mymapping.com#0-POM-4","predicate":"http://www.w3.org/ns/r2rml#objectMap","object":"http://www.mymapping.com#0-OM-4"},{"subject":"http://www.mymapping.com#0-OM-4","predicate":"http://semweb.mmlab.be/ns/rml#reference","object":"\"age\""}],
