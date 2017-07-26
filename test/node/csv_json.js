@@ -6,7 +6,6 @@
 let assert = require('chai').assert;
 let example2rml = require('../../index.js');
 let type = require('semanticmodel').nodeType.types;
-let utils = require('../../lib/utils.js');
 
 describe('CSV + JSON', function () {
   it('#1', function () {

@@ -100,8 +100,8 @@ More information and other options can be found via `example2rml -h`.
 ## Supported Data Formats
 At the moment CSV and JSON are supported.
 
-# License
+# Copyright
 
 The example2rml library is written by [Pieter Heyvaert](https://pieterheyvaert.com/research/).
 
-This code is copyrighted by [Ghent University – imec](http://www.ugent.be/ea/idlab/en) and released under the [MIT license](http://opensource.org/licenses/MIT).
+This code is copyrighted by [Ghent University – imec](http://www.ugent.be/ea/idlab/en).

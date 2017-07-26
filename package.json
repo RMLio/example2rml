@@ -7,16 +7,16 @@
     "test": "mocha $(find test -name '*.js' -not -path '*/browser/*')"
   },
   "author": "Pieter Heyvaert <pheyvaer.heyvaert@ugent.be> (https://pieterheyvaert.com)",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "dependencies": {
     "commander": "^2.9.0",
     "csv-parse": "^1.2.0",
     "jsonpath": "^0.2.11",
     "n3": "^0.11.0",
-    "pinta": "git+ssh://git@git.datasciencelab.ugent.be:4444/pheyvaer/pinta.git",
+    "pinta": "git://github.com/RMLio/pinta.git",
     "prefix-ns": "^0.1.2",
     "q": "^1.5.0",
-    "semanticmodel": "git+ssh://git@git.datasciencelab.ugent.be:4444/pheyvaer/semanticmodel.git",
+    "semanticmodel": "git://github.com/RMLio/semanticmodel.git",
     "shortid": "^2.2.8",
     "winston": "^2.3.1"
   },
@@ -24,11 +24,10 @@
     "babili": "^0.1.3",
     "browserify": "^14.4.0",
     "chai": "^3.5.0",
-    "mocha": "^3.2.0",
-    "readable-rml": "git+ssh://git@git.datasciencelab.ugent.be:4444/rml/readable-rml.git"
+    "mocha": "^3.2.0"
   },
   "bin": {
     "example2rml": "./bin/cli.js"
   },
-  "repository": "https://git.datasciencelab.ugent.be/pheyvaer/example2rml"
+  "repository": "https://github.com/RMLio/example2rml"
 }

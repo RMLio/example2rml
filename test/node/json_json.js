@@ -5,7 +5,6 @@
 
 let assert = require('chai').assert;
 let type = require('semanticmodel').nodeType.types;
-let utils = require('../../lib/utils.js');
 
 describe('JSON + JSON', function () {
   it('#1', function () {
