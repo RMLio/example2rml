@@ -16,7 +16,6 @@
     "pinta": "git+ssh://git@git.datasciencelab.ugent.be:4444/pheyvaer/pinta.git",
     "prefix-ns": "^0.1.2",
     "q": "^1.5.0",
-    "rdfstore": "^0.9.17",
     "readable-rml": "git+ssh://git@git.datasciencelab.ugent.be:4444/rml/readable-rml.git",
     "semanticmodel": "git+ssh://git@git.datasciencelab.ugent.be:4444/pheyvaer/semanticmodel.git",
     "shortid": "^2.2.8",
